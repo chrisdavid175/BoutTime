@@ -21,7 +21,7 @@ protocol EventQuizType {
     func resetRound()
 }
 
-protocol EventType {
+protocol EventType  {
     var name: String { get }
     var url: String { get }
     var date: Date { get }
@@ -144,10 +144,16 @@ class InventoryUnarchiver {
 */
 // Concrete Types
 
-struct Event: EventType {
+struct Event: EventType, Equatable {
     var name: String
     var url: String
     var date: Date
+    
+    init(name: String, url: String, date: Date) {
+        self.name = name
+        self.url = url
+        self.date = date
+    }
     
     func getName() -> String {
         return name
@@ -161,6 +167,13 @@ struct Event: EventType {
         return date
     }
     
+    static func == (lhs: Event, rhs: Event) -> Bool {
+        return
+            lhs.name == rhs.name &&
+            lhs.url == rhs.url &&
+            lhs.date == rhs.date
+    }
+    
 }
 
 class eventQuiz: EventQuizType {
@@ -171,23 +184,30 @@ class eventQuiz: EventQuizType {
         self.eventList = eventList
     }
     
-    func getRandomEvent() -> EventType {
+    func getRandomEvent() -> Event {
         let randomEvent = eventList[Int(arc4random_uniform(UInt32(eventList.count)))]
         return randomEvent
     }
     
     func resetRound() {
         var eventsPerRound = 4
-        var event: EventType
+        var newEvent: Event
         // Reset eventRound
         eventRound = []
         
         // Populate eventRound with 4 new and unique events
         while eventsPerRound > 0 {
             repeat {
-                event = getRandomEvent()
-            } while ( try eventRound.contains(where: event as! (EventType) throws -> Bool) )
-            eventRound.append(event)
+                newEvent = getRandomEvent()
+            } while ( eventRound.contains { event in
+                if newEvent == event {
+                    return true
+                } else {
+                    return false
+                }
+            })
+            
+            eventRound.append(newEvent)
             eventsPerRound = eventsPerRound - 1
         }
     }
