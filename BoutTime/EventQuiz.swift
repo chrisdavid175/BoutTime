@@ -1,5 +1,5 @@
 //
-//  Event.swift
+//  EventQuiz.swift
 //  BoutTime
 //
 //  Created by Chris David on 10/29/16.
@@ -13,7 +13,11 @@ import Foundation
 
 // Protocols
 
-protocol Event {
+protocol EventQuizType {
+    //var
+}
+
+protocol EventType {
     var name: String { get }
     var url: String { get }
     var date: Date { get }
@@ -43,20 +47,44 @@ protocol ItemType {
 
 // Error Types
 
-enum InventoryError: Error {
+enum EventError: Error {
     case InvalidResource
     case ConversionError
     case InvalidKey
 }
 
+/*
+enum InventoryError: Error {
+    case InvalidResource
+    case ConversionError
+    case InvalidKey
+}
+*/
+/*
 enum VendingMachineError: Error {
     case InvalidSelection
     case OutOfStock
     case InsufficientFunds(required: Double)
 }
+*/
 
 // Helper Classes
+class PlistConverter {
+    class func dictionaryFromFile(resource: String, ofType type: String) throws -> [String : AnyObject] {
+        
+        guard let path = Bundle.main.path(forResource: resource, ofType: type) else {
+            throw EventError.InvalidResource
+        }
+        
+        guard let dictionary = NSDictionary(contentsOfFile: path), let castDictionary = dictionary as? [String: AnyObject] else {
+            throw EventError.ConversionError
+        }
+        
+        return castDictionary
+    }
+}
 
+/*
 class PlistConverter {
     class func dictionaryFromFile(resource: String, ofType type: String) throws -> [String : AnyObject] {
         
@@ -72,7 +100,26 @@ class PlistConverter {
     }
     
 }
+*/
 
+class EventUnarchiver {
+    class func eventListFromDictionary(dictionary: [String: AnyObject]) throws -> [EventType] {
+        
+        var eventList: [EventType] = []
+        
+        for (key, value) in dictionary {
+            if let eventDictionary = value as?  [String: AnyObject], let url = eventDictionary["url"] as? String, let date = eventDictionary["date"] as? Date {
+                let name = key
+                let event = Event(name: name, url: url, date: date)
+                eventList.append(event)
+                
+            }
+        }
+        return eventList
+    }
+}
+
+/*
 class InventoryUnarchiver {
     class func vendingInventoryFromDictionary(dictionary: [String: AnyObject]) throws -> [VendingSelection: ItemType] {
         
@@ -90,9 +137,29 @@ class InventoryUnarchiver {
         return inventory
     }
 }
-
+*/
 // Concrete Types
 
+struct Event: EventType {
+    var name: String
+    var url: String
+    var date: Date
+    
+    func getName() -> String {
+        return name
+    }
+    
+    func getURL() -> String {
+        return url
+    }
+    
+    func getDate() -> Date {
+        return date
+    }
+    
+}
+
+/*
 enum VendingSelection: String {
     case Soda
     case DietSoda
@@ -115,6 +182,7 @@ enum VendingSelection: String {
         }
     }
 }
+
 
 struct VendingItem: ItemType {
     let price: Double
@@ -161,3 +229,4 @@ class VendingMachine: VendingMachineType {
     }
     
 }
+*/
