@@ -14,7 +14,11 @@ import Foundation
 // Protocols
 
 protocol EventQuizType {
-    //var
+    var eventList: [EventType] { get }
+    var eventRound: [EventType] { get set }
+    
+    func getRandomEvent() -> EventType
+    func resetRound()
 }
 
 protocol EventType {
@@ -158,6 +162,37 @@ struct Event: EventType {
     }
     
 }
+
+class eventQuiz: EventQuizType {
+    var eventList: [EventType]
+    var eventRound: [EventType] = []
+    
+    init(eventList: [EventType]) {
+        self.eventList = eventList
+    }
+    
+    func getRandomEvent() -> EventType {
+        let randomEvent = eventList[Int(arc4random_uniform(UInt32(eventList.count)))]
+        return randomEvent
+    }
+    
+    func resetRound() {
+        var eventsPerRound = 4
+        var event: EventType
+        // Reset eventRound
+        eventRound = []
+        
+        // Populate eventRound with 4 new and unique events
+        while eventsPerRound > 0 {
+            repeat {
+                event = getRandomEvent()
+            } while ( try eventRound.contains(where: event as! (EventType) throws -> Bool) )
+            eventRound.append(event)
+            eventsPerRound = eventsPerRound - 1
+        }
+    }
+}
+
 
 /*
 enum VendingSelection: String {
