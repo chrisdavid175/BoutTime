@@ -15,9 +15,9 @@ import Foundation
 
 protocol EventQuizType {
     var eventList: [EventType] { get }
-    var eventRound: [EventType] { get set }
+    var eventRound: [Event] { get set }
     
-    func getRandomEvent() -> EventType
+    func getRandomEvent() throws -> Event
     func resetRound()
 }
 
@@ -55,6 +55,7 @@ enum EventError: Error {
     case InvalidResource
     case ConversionError
     case InvalidKey
+    case RandomEventFailure
 }
 
 /*
@@ -178,35 +179,56 @@ struct Event: EventType, Equatable {
 
 class eventQuiz: EventQuizType {
     var eventList: [EventType]
-    var eventRound: [EventType] = []
+    var eventRound: [Event] = []
     
     init(eventList: [EventType]) {
         self.eventList = eventList
     }
     
-    func getRandomEvent() -> Event {
-        let randomEvent = eventList[Int(arc4random_uniform(UInt32(eventList.count)))]
+    func getRandomEvent() throws -> Event {
+        guard let randomEvent = eventList[Int(arc4random_uniform(UInt32(eventList.count)))] as? Event else {
+            throw EventError.RandomEventFailure
+        }
         return randomEvent
+        
     }
     
     func resetRound() {
         var eventsPerRound = 4
-        var newEvent: Event
+        var newEvent = Event(name: "", url: "", date: Date(timeIntervalSince1970: 0))
         // Reset eventRound
         eventRound = []
         
         // Populate eventRound with 4 new and unique events
         while eventsPerRound > 0 {
             repeat {
-                newEvent = getRandomEvent()
-            } while ( eventRound.contains { event in
-                if newEvent == event {
-                    return true
-                } else {
-                    return false
+                do {
+                    newEvent = try getRandomEvent()
+                } catch EventError.RandomEventFailure {
+                    print("Failure to get a random Event")
+                } catch let error {
+                    fatalError("\(error)")
                 }
-            })
-            
+            } while ( eventRound.contains(newEvent) )
+/*
+            // Populate eventRound with 4 new and unique events
+            while eventsPerRound > 0 {
+                repeat {
+                    do {
+                        newEvent = try getRandomEvent()
+                    } catch EventError.RandomEventFailure {
+                        print("Failure to get a random Event")
+                    } catch let error {
+                        fatalError("\(error)")
+                    }
+                } while ( eventRound.contains { event in
+                    if newEvent == event {
+                        return true
+                    } else {
+                        return false
+                    }
+                })
+*/
             eventRound.append(newEvent)
             eventsPerRound = eventsPerRound - 1
         }
