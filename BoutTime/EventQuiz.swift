@@ -233,6 +233,7 @@ class eventQuiz: EventQuizType {
             eventsPerRound = eventsPerRound - 1
         }
     }
+    
 }
 
 
