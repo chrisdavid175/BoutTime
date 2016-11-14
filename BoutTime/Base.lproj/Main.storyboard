@@ -72,6 +72,9 @@
                                 </constraints>
                                 <state key="normal" title="Event1DownButton" image="down_full"/>
                                 <state key="highlighted" image="down_full_selected"/>
+                                <connections>
+                                    <action selector="event1Label" destination="BYZ-38-t0r" eventType="touchUpInside" id="3JL-Wy-wKh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYL-9b-vKR">
                                 <rect key="frame" x="301" y="415" width="38" height="110"/>
