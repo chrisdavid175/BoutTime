@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4r-qG-y3h">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event1" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4r-qG-y3h">
                                 <rect key="frame" x="36" y="40" width="303" height="110"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -64,53 +64,60 @@
                                 <rect key="frame" x="16" y="586" width="343" height="30"/>
                                 <state key="normal" title="TimerOrButton"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2O-cw-WRW">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2O-cw-WRW">
                                 <rect key="frame" x="301" y="40" width="38" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="38" id="JAE-vx-HyN"/>
                                     <constraint firstAttribute="height" constant="110" id="Mgw-zY-6UK"/>
                                 </constraints>
-                                <state key="normal" title="Event1DownButton" backgroundImage="down_full"/>
+                                <state key="normal" title="Event1DownButton" image="down_full"/>
+                                <state key="highlighted" image="down_full_selected"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYL-9b-vKR">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYL-9b-vKR">
                                 <rect key="frame" x="301" y="415" width="38" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="mga-SO-5co"/>
                                     <constraint firstAttribute="width" constant="38" id="rXx-Gd-83q"/>
                                 </constraints>
-                                <state key="normal" title="Event4UpButton" backgroundImage="up_full"/>
+                                <state key="normal" title="Event4UpButton" image="up_full"/>
+                                <state key="highlighted" image="up_full_selected"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G03-n0-DYa">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G03-n0-DYa">
                                 <rect key="frame" x="301" y="220" width="38" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="38" id="36H-MJ-3TQ"/>
                                     <constraint firstAttribute="height" constant="55" id="gi4-go-ecK"/>
                                 </constraints>
-                                <state key="normal" title="Event2DownButton" backgroundImage="down_half"/>
+                                <state key="normal" title="Event2DownButton" image="down_half"/>
+                                <state key="selected" image="down_half_selected"/>
+                                <state key="highlighted" image="down_half_selected"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Adj-dH-u7J">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Adj-dH-u7J">
                                 <rect key="frame" x="301" y="345" width="38" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="38" id="eBz-hg-wIz"/>
                                     <constraint firstAttribute="height" constant="55" id="eQB-vz-0it"/>
                                 </constraints>
-                                <state key="normal" title="Event3DownButton" backgroundImage="down_half"/>
+                                <state key="normal" title="Event3DownButton" image="down_half"/>
+                                <state key="highlighted" image="down_half_selected"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VDz-K9-Sdc">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VDz-K9-Sdc">
                                 <rect key="frame" x="301" y="165" width="38" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="4S4-Dt-Vpm"/>
                                     <constraint firstAttribute="width" constant="38" id="nPd-Xd-jyj"/>
                                 </constraints>
-                                <state key="normal" title="Event2UpButton" backgroundImage="up_half"/>
+                                <state key="normal" title="Event2UpButton" image="up_half"/>
+                                <state key="highlighted" image="up_half_selected"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qD-bc-HDq">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qD-bc-HDq">
                                 <rect key="frame" x="301" y="290" width="38" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="38" id="Roz-xV-auY"/>
                                     <constraint firstAttribute="height" constant="55" id="fQN-Z6-EJC"/>
                                 </constraints>
-                                <state key="normal" title="Event3UpButton" backgroundImage="up_half"/>
+                                <state key="normal" title="Event3UpButton" image="up_half"/>
+                                <state key="highlighted" image="up_half_selected"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0078431372549019607" green="0.15686274509803921" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -176,8 +183,12 @@
     </scenes>
     <resources>
         <image name="down_full" width="158" height="457"/>
+        <image name="down_full_selected" width="158" height="457"/>
         <image name="down_half" width="158" height="229"/>
+        <image name="down_half_selected" width="158" height="229"/>
         <image name="up_full" width="158" height="457"/>
+        <image name="up_full_selected" width="158" height="457"/>
         <image name="up_half" width="158" height="229"/>
+        <image name="up_half_selected" width="158" height="229"/>
     </resources>
 </document>

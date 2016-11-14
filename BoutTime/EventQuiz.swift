@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 
@@ -177,7 +178,7 @@ struct Event: EventType, Equatable {
     
 }
 
-class eventQuiz: EventQuizType {
+class EventQuiz: EventQuizType {
     var eventList: [EventType]
     var eventRound: [Event] = []
     
