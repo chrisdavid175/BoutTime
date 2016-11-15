@@ -61,12 +61,12 @@ class ViewController: UIViewController {
         }
         */
         
-        eventLabelCornerRadius = 5
-        clipsToBounds = true
-        event1Label.layer.cornerRadius = eventLabelCornerRadius
-        event2Label.layer.cornerRadius = eventLabelCornerRadius
-        event3Label.layer.cornerRadius = eventLabelCornerRadius
-        event4Label.layer.cornerRadius = eventLabelCornerRadius
+        let eventLabelCornerRadius = 5
+        let clipsToBounds = true
+        event1Label.layer.cornerRadius = CGFloat(eventLabelCornerRadius)
+        event2Label.layer.cornerRadius = CGFloat(eventLabelCornerRadius)
+        event3Label.layer.cornerRadius = CGFloat(eventLabelCornerRadius)
+        event4Label.layer.cornerRadius = CGFloat(eventLabelCornerRadius)
         event1Label.clipsToBounds = clipsToBounds
         event2Label.clipsToBounds = clipsToBounds
         event3Label.clipsToBounds = clipsToBounds
@@ -87,15 +87,47 @@ class ViewController: UIViewController {
     }
     
     func swapEvents(event1Index: Int, event2Index: Int) {
-        tempEvent1 = eventGames.eventRound[event1Index]
-        tempEvent2 = eventGames.eventRound[event2Index]
-        eventGames.eventRound[event1Index] = tempEvent2
-        eventGames.eventRound[event2Index] = tempEvent1
+        let tempEvent1 = eventsGame.eventRound[event1Index]
+        let tempEvent2 = eventsGame.eventRound[event2Index]
+        eventsGame.eventRound[event1Index] = tempEvent2
+        eventsGame.eventRound[event2Index] = tempEvent1
         
     }
     
-    @IBAction func event1Label() {
+
+    @IBAction func event1DownButton() {
+        swapEvents(event1Index: 0, event2Index: 1)
+        loadEventLabels()
     }
+    
+    @IBAction func event2UpButton() {
+        swapEvents(event1Index: 1, event2Index: 0)
+        loadEventLabels()
+    }
+    
+    @IBAction func event2DownButton() {
+        swapEvents(event1Index: 1, event2Index: 2)
+        loadEventLabels()
+    }
+    
+    @IBAction func event3UpButton() {
+        swapEvents(event1Index: 2, event2Index: 1)
+        loadEventLabels()
+    }
+    
+    @IBAction func event3DownButton() {
+        swapEvents(event1Index: 2, event2Index: 3)
+        loadEventLabels()
+    }
+    
+    @IBAction func event4UpButton() {
+        swapEvents(event1Index: 3, event2Index: 2)
+        loadEventLabels()
+    }
+ 
+    
+    
+    
     
 
 }
