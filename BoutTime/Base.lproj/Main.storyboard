@@ -134,11 +134,7 @@
                                 <state key="normal" title="Event1DownButton" image="down_full"/>
                                 <state key="highlighted" image="down_full_selected"/>
                                 <connections>
-                                    <action selector="event1DownButt" destination="BYZ-38-t0r" eventType="touchUpInside" id="xzM-iP-dYR"/>
-                                    <action selector="event1DownButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="5k0-uc-31A"/>
-                                    <action selector="event1DownButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s5E-GZ-pH7"/>
-                                    <action selector="event1Label" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vs2-Ee-b2t"/>
-                                    <action selector="event2UpButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8xO-zt-8Cp"/>
+                                    <action selector="event1DownButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="0PU-zM-izH"/>
                                 </connections>
                             </button>
                         </subviews>

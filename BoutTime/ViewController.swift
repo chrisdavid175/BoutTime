@@ -94,12 +94,11 @@ class ViewController: UIViewController {
         
     }
     
-
     @IBAction func event1DownButton() {
         swapEvents(event1Index: 0, event2Index: 1)
         loadEventLabels()
     }
-    
+
     @IBAction func event2UpButton() {
         swapEvents(event1Index: 1, event2Index: 0)
         loadEventLabels()
