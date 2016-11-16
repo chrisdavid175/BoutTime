@@ -192,6 +192,7 @@
                         <outlet property="Event2Label" destination="Jnj-ix-Drx" id="8qi-u2-Zzx"/>
                         <outlet property="Event3Label" destination="UVe-4M-W7g" id="rJd-84-6Qv"/>
                         <outlet property="Event4Label" destination="ztS-LJ-FCc" id="Ogu-hm-9Mj"/>
+                        <outlet property="shakeLabel" destination="Ub7-mo-ch4" id="Qd2-5p-TEl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

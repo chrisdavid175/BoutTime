@@ -233,6 +233,26 @@ class EventQuiz: EventQuizType {
             eventRound.append(newEvent)
             eventsPerRound = eventsPerRound - 1
         }
+        
+        func areEventsInOrder(event1: Event, event2: Event) -> Bool {
+            if event1.date < event2.date {
+                return true
+            } else {
+                return false
+            }
+        }
+        
+        func checkEventRoundOrder() -> Bool {
+            var index=0
+            while index < eventRound.count - 1 {
+                if !areEventsInOrder(event1: eventRound[index], event2: eventRound[index + 1]) {
+                    return false
+                }
+                index += 1
+            }
+            return true
+        }
+        
     }
     
 }

@@ -34,6 +34,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var event2Label: UILabel!
     @IBOutlet weak var event3Label: UILabel!
     @IBOutlet weak var event4Label: UILabel!
+    @IBOutlet weak var shakeLabel: UILabel!
+
     
     //var eventLabels = [ event1Label, event2Label, event3Label, event4Label ]
     
@@ -124,8 +126,15 @@ class ViewController: UIViewController {
         loadEventLabels()
     }
  
+    override func becomeFirstResponder() -> Bool {
+        return true
+    }
     
-    
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            self.shakeLabel.text = "Shaken, not stirred"
+        }
+    }
     
     
 
