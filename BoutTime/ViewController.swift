@@ -132,7 +132,20 @@ class ViewController: UIViewController {
     
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            self.shakeLabel.text = "Shaken, not stirred"
+            if eventsGame.checkEventRoundOrder() {
+                    self.shakeLabel.text = "Correct!"
+                    correctRounds += 1
+            } else {
+            self.shakeLabel.text = "Incorrect!"
+            }
+            roundsPlayed += 1
+            //REMOVE:
+            //FIXME
+            // FIXME: For loop check to remove
+            for event in eventsGame.eventRound {
+                print(event.date)
+            }
+
         }
     }
     

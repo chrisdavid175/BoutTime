@@ -211,49 +211,32 @@ class EventQuiz: EventQuizType {
                     fatalError("\(error)")
                 }
             } while ( eventRound.contains(newEvent) )
-/*
-            // Populate eventRound with 4 new and unique events
-            while eventsPerRound > 0 {
-                repeat {
-                    do {
-                        newEvent = try getRandomEvent()
-                    } catch EventError.RandomEventFailure {
-                        print("Failure to get a random Event")
-                    } catch let error {
-                        fatalError("\(error)")
-                    }
-                } while ( eventRound.contains { event in
-                    if newEvent == event {
-                        return true
-                    } else {
-                        return false
-                    }
-                })
-*/
+            
             eventRound.append(newEvent)
             eventsPerRound = eventsPerRound - 1
         }
         
-        func areEventsInOrder(event1: Event, event2: Event) -> Bool {
-            if event1.date < event2.date {
-                return true
-            } else {
+    }
+    
+    func areEventsInOrder(event1: Event, event2: Event) -> Bool {
+        if event1.date < event2.date {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func checkEventRoundOrder() -> Bool {
+        var index=0
+        while index < eventRound.count - 1 {
+            if !areEventsInOrder(event1: eventRound[index], event2: eventRound[index + 1]) {
                 return false
             }
+            index += 1
         }
-        
-        func checkEventRoundOrder() -> Bool {
-            var index=0
-            while index < eventRound.count - 1 {
-                if !areEventsInOrder(event1: eventRound[index], event2: eventRound[index + 1]) {
-                    return false
-                }
-                index += 1
-            }
-            return true
-        }
-        
+        return true
     }
+
     
 }
 
