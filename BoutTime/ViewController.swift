@@ -83,6 +83,7 @@ class ViewController: UIViewController {
     func loadRound() {
         eventsGame.resetRound()
         loadEventLabels()
+        resetTimer()
     }
     
     func loadEventLabels() {
@@ -152,6 +153,16 @@ class ViewController: UIViewController {
                 print(event.date)
             }
             //timerOrButton.setBackgroundImage(successButton, for: .normal)
+        }
+    }
+    func resetTimer() {
+        var roundTime = 60
+
+        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            roundTime -= 1
+            let minutes = String(format: "%02d", roundTime / 60)
+            let seconds = String(format: "%02d", roundTime % 60)
+            self.timerOrButton.setTitle("\(minutes):\(seconds)", for: .normal)
         }
     }
     
