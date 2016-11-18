@@ -56,14 +56,13 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Directions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ub7-mo-ch4">
                                 <rect key="frame" x="32" y="626" width="311" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="DKm-P2-1aF"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.21176470588235294" green="0.55294117647058827" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yrs-EI-8rW">
-                                <rect key="frame" x="16" y="586" width="343" height="30"/>
-                                <state key="normal" title="TimerOrButton"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYL-9b-vKR">
                                 <rect key="frame" x="301" y="415" width="38" height="110"/>
                                 <constraints>
@@ -137,6 +136,13 @@
                                     <action selector="event1DownButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="0PU-zM-izH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yrs-EI-8rW">
+                                <rect key="frame" x="120" y="568" width="135" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Xt1-vg-ghP"/>
+                                </constraints>
+                                <state key="normal" title="TimerOrButton"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0078431372549019607" green="0.15686274509803921" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -146,12 +152,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Ub7-mo-ch4" secondAttribute="trailing" constant="16" id="5JR-RP-znT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Jnj-ix-Drx" secondAttribute="trailing" constant="20" id="5OM-VN-dLg"/>
                             <constraint firstItem="ztS-LJ-FCc" firstAttribute="width" secondItem="g4r-qG-y3h" secondAttribute="width" id="67D-lR-RG8"/>
-                            <constraint firstItem="Yrs-EI-8rW" firstAttribute="top" secondItem="ztS-LJ-FCc" secondAttribute="bottom" constant="61" id="6C1-h3-GgW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RYL-9b-vKR" secondAttribute="trailing" constant="20" id="6Jw-4x-QMX"/>
                             <constraint firstItem="Ub7-mo-ch4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="6qn-bd-WcL"/>
                             <constraint firstItem="UVe-4M-W7g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="7e5-1h-YKA"/>
                             <constraint firstItem="VDz-K9-Sdc" firstAttribute="leading" secondItem="Jnj-ix-Drx" secondAttribute="trailing" constant="-38" id="7eM-Ju-05j"/>
-                            <constraint firstItem="Yrs-EI-8rW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="7wl-so-aV1"/>
+                            <constraint firstItem="Yrs-EI-8rW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="120" id="7wl-so-aV1"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ub7-mo-ch4" secondAttribute="bottom" constant="20" id="8RF-Mz-gKx"/>
                             <constraint firstItem="G03-n0-DYa" firstAttribute="top" secondItem="VDz-K9-Sdc" secondAttribute="bottom" id="A7H-iN-6Lf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ztS-LJ-FCc" secondAttribute="trailing" constant="20" id="Cjb-TB-K6U"/>
@@ -161,7 +166,7 @@
                             <constraint firstItem="RYL-9b-vKR" firstAttribute="top" secondItem="Adj-dH-u7J" secondAttribute="bottom" constant="15" id="QOB-Ee-I1K"/>
                             <constraint firstItem="g4r-qG-y3h" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="Ru3-NH-RB2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Jnj-ix-Drx" secondAttribute="trailing" constant="20" id="T6J-x5-oeG"/>
-                            <constraint firstItem="Ub7-mo-ch4" firstAttribute="top" secondItem="Yrs-EI-8rW" secondAttribute="bottom" constant="10" id="Tlb-gs-qhm"/>
+                            <constraint firstItem="Ub7-mo-ch4" firstAttribute="top" secondItem="Yrs-EI-8rW" secondAttribute="bottom" constant="8" id="Tlb-gs-qhm"/>
                             <constraint firstItem="ztS-LJ-FCc" firstAttribute="height" secondItem="g4r-qG-y3h" secondAttribute="height" id="UOB-Gz-KkV"/>
                             <constraint firstItem="5qD-bc-HDq" firstAttribute="top" secondItem="G03-n0-DYa" secondAttribute="bottom" constant="15" id="VLp-Ai-9Wk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5qD-bc-HDq" secondAttribute="trailing" constant="20" id="X80-3q-Pct"/>
@@ -182,7 +187,7 @@
                             <constraint firstItem="ztS-LJ-FCc" firstAttribute="top" secondItem="UVe-4M-W7g" secondAttribute="bottom" constant="15" id="uoV-85-XgD"/>
                             <constraint firstItem="Jnj-ix-Drx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="wj1-Xb-GI4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VDz-K9-Sdc" secondAttribute="trailing" constant="20" id="xf0-GQ-5MP"/>
-                            <constraint firstAttribute="trailing" secondItem="Yrs-EI-8rW" secondAttribute="trailing" constant="16" id="yGS-5K-HlO"/>
+                            <constraint firstAttribute="trailing" secondItem="Yrs-EI-8rW" secondAttribute="trailing" constant="120" id="yGS-5K-HlO"/>
                             <constraint firstItem="Adj-dH-u7J" firstAttribute="top" secondItem="5qD-bc-HDq" secondAttribute="bottom" id="z74-Y4-NJ5"/>
                             <constraint firstItem="i56-00-11q" firstAttribute="trailing" secondItem="g4r-qG-y3h" secondAttribute="trailing" id="zcM-K6-4dd"/>
                         </constraints>
@@ -193,11 +198,12 @@
                         <outlet property="Event3Label" destination="UVe-4M-W7g" id="rJd-84-6Qv"/>
                         <outlet property="Event4Label" destination="ztS-LJ-FCc" id="Ogu-hm-9Mj"/>
                         <outlet property="shakeLabel" destination="Ub7-mo-ch4" id="Qd2-5p-TEl"/>
+                        <outlet property="timerOrButton" destination="Yrs-EI-8rW" id="xKn-5l-jfc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="143.47826086956522" y="139.4021739130435"/>
+            <point key="canvasLocation" x="143.19999999999999" y="138.98050974512745"/>
         </scene>
     </scenes>
     <resources>

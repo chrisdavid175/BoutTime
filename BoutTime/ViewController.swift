@@ -13,6 +13,10 @@ class ViewController: UIViewController {
     let roundsPerGame = 6
     var roundsPlayed = 0
     var correctRounds = 0
+    // FIXME: Remove image var
+    //let successButton = UIImage(named: Bundle.main.path(forResource: "next_round_success", ofType: "png"))
+    let successButton = UIImage(named: "next_round_success.png")
+    let failButton = UIImage(named: "next_round_fail.png")
     
     var eventsGame: EventQuiz
     
@@ -35,7 +39,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var event3Label: UILabel!
     @IBOutlet weak var event4Label: UILabel!
     @IBOutlet weak var shakeLabel: UILabel!
-
+    @IBOutlet weak var timerOrButton: UIButton!
     
     //var eventLabels = [ event1Label, event2Label, event3Label, event4Label ]
     
@@ -133,19 +137,21 @@ class ViewController: UIViewController {
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             if eventsGame.checkEventRoundOrder() {
-                    self.shakeLabel.text = "Correct!"
-                    correctRounds += 1
+                correctRounds += 1
+                timerOrButton.setImage(successButton, for: .normal)
+                //timerOrButton.setImage(UIImage(named: "next_round_success.png"), for: .normal)
             } else {
-            self.shakeLabel.text = "Incorrect!"
+                timerOrButton.setImage(failButton, for: .normal)
             }
             roundsPlayed += 1
+            self.shakeLabel.text = "Tap events to learn more"
             //REMOVE:
             //FIXME
             // FIXME: For loop check to remove
             for event in eventsGame.eventRound {
                 print(event.date)
             }
-
+            //timerOrButton.setBackgroundImage(successButton, for: .normal)
         }
     }
     
