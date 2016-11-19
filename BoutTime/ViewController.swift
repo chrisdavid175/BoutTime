@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     //let successButton = UIImage(named: Bundle.main.path(forResource: "next_round_success", ofType: "png"))
     let successButton = UIImage(named: "next_round_success.png")
     let failButton = UIImage(named: "next_round_fail.png")
-    
+    var timer: Timer?
     var eventsGame: EventQuiz
     
     required init?(coder aDecoder: NSCoder) {
@@ -98,7 +98,6 @@ class ViewController: UIViewController {
         let tempEvent2 = eventsGame.eventRound[event2Index]
         eventsGame.eventRound[event1Index] = tempEvent2
         eventsGame.eventRound[event2Index] = tempEvent1
-        
     }
     
     @IBAction func event1DownButton() {
@@ -146,6 +145,7 @@ class ViewController: UIViewController {
             }
             roundsPlayed += 1
             self.shakeLabel.text = "Tap events to learn more"
+            self.timerOrButton.isEnabled = true
             //REMOVE:
             //FIXME
             // FIXME: For loop check to remove
@@ -157,12 +157,24 @@ class ViewController: UIViewController {
     }
     func resetTimer() {
         var roundTime = 60
+        timerOrButton.isEnabled = false
 
-        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             roundTime -= 1
             let minutes = String(format: "%02d", roundTime / 60)
             let seconds = String(format: "%02d", roundTime % 60)
             self.timerOrButton.setTitle("\(minutes):\(seconds)", for: .normal)
+            if roundTime == 0 {
+                if self.eventsGame.checkEventRoundOrder() {
+                    self.correctRounds += 1
+                    self.timerOrButton.setImage(self.successButton, for: .normal)
+                } else {
+                    self.timerOrButton.setImage(self.failButton, for: .normal)
+                }
+                self.roundsPlayed += 1
+                self.timerOrButton.isEnabled = true
+                self.shakeLabel.text = "Tap events to learn more"
+            }
         }
     }
     
