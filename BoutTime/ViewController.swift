@@ -57,49 +57,6 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Helper Methods
-
-    func formatLabels() {
-        /*
-        for label in eventLabels {
-            label.layer.cornerRadius = 5
-            label.clipsToBounds = true
-        }
-        */
-        
-        let eventLabelCornerRadius = 5
-        let clipsToBounds = true
-        event1Label.layer.cornerRadius = CGFloat(eventLabelCornerRadius)
-        event2Label.layer.cornerRadius = CGFloat(eventLabelCornerRadius)
-        event3Label.layer.cornerRadius = CGFloat(eventLabelCornerRadius)
-        event4Label.layer.cornerRadius = CGFloat(eventLabelCornerRadius)
-        event1Label.clipsToBounds = clipsToBounds
-        event2Label.clipsToBounds = clipsToBounds
-        event3Label.clipsToBounds = clipsToBounds
-        event4Label.clipsToBounds = clipsToBounds
-        
-    }
-    
-    func loadRound() {
-        eventsGame.resetRound()
-        loadEventLabels()
-        resetTimer()
-    }
-    
-    func loadEventLabels() {
-        event1Label.text = eventsGame.eventRound[0].name
-        event2Label.text = eventsGame.eventRound[1].name
-        event3Label.text = eventsGame.eventRound[2].name
-        event4Label.text = eventsGame.eventRound[3].name
-    }
-    
-    func swapEvents(event1Index: Int, event2Index: Int) {
-        let tempEvent1 = eventsGame.eventRound[event1Index]
-        let tempEvent2 = eventsGame.eventRound[event2Index]
-        eventsGame.eventRound[event1Index] = tempEvent2
-        eventsGame.eventRound[event2Index] = tempEvent1
-    }
-    
     @IBAction func event1DownButton() {
         swapEvents(event1Index: 0, event2Index: 1)
         loadEventLabels()
@@ -136,23 +93,7 @@ class ViewController: UIViewController {
     
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            if eventsGame.checkEventRoundOrder() {
-                correctRounds += 1
-                timerOrButton.setImage(successButton, for: .normal)
-                //timerOrButton.setImage(UIImage(named: "next_round_success.png"), for: .normal)
-            } else {
-                timerOrButton.setImage(failButton, for: .normal)
-            }
-            roundsPlayed += 1
-            self.shakeLabel.text = "Tap events to learn more"
-            self.timerOrButton.isEnabled = true
-            //REMOVE:
-            //FIXME
-            // FIXME: For loop check to remove
-            for event in eventsGame.eventRound {
-                print(event.date)
-            }
-            //timerOrButton.setBackgroundImage(successButton, for: .normal)
+            self.checkEvent()
         }
     }
     func resetTimer() {
@@ -165,20 +106,70 @@ class ViewController: UIViewController {
             let seconds = String(format: "%02d", roundTime % 60)
             self.timerOrButton.setTitle("\(minutes):\(seconds)", for: .normal)
             if roundTime == 0 {
-                if self.eventsGame.checkEventRoundOrder() {
-                    self.correctRounds += 1
-                    self.timerOrButton.setImage(self.successButton, for: .normal)
-                } else {
-                    self.timerOrButton.setImage(self.failButton, for: .normal)
-                }
-                self.roundsPlayed += 1
-                self.timerOrButton.isEnabled = true
-                self.shakeLabel.text = "Tap events to learn more"
+                self.eventCheck()
             }
         }
     }
     
+    // MARK: - Helper Methods
     
+    func formatLabels() {
+        /*
+         for label in eventLabels {
+         label.layer.cornerRadius = 5
+         label.clipsToBounds = true
+         }
+         */
+        
+        let eventLabelCornerRadius = 5
+        let clipsToBounds = true
+        event1Label.layer.cornerRadius = CGFloat(eventLabelCornerRadius)
+        event2Label.layer.cornerRadius = CGFloat(eventLabelCornerRadius)
+        event3Label.layer.cornerRadius = CGFloat(eventLabelCornerRadius)
+        event4Label.layer.cornerRadius = CGFloat(eventLabelCornerRadius)
+        event1Label.clipsToBounds = clipsToBounds
+        event2Label.clipsToBounds = clipsToBounds
+        event3Label.clipsToBounds = clipsToBounds
+        event4Label.clipsToBounds = clipsToBounds
+        
+    }
+    
+    func loadRound() {
+        eventsGame.resetRound()
+        loadEventLabels()
+        resetTimer()
+    }
+    
+    func loadEventLabels() {
+        event1Label.text = eventsGame.eventRound[0].name
+        event2Label.text = eventsGame.eventRound[1].name
+        event3Label.text = eventsGame.eventRound[2].name
+        event4Label.text = eventsGame.eventRound[3].name
+    }
+    
+    func swapEvents(event1Index: Int, event2Index: Int) {
+        let tempEvent1 = eventsGame.eventRound[event1Index]
+        let tempEvent2 = eventsGame.eventRound[event2Index]
+        eventsGame.eventRound[event1Index] = tempEvent2
+        eventsGame.eventRound[event2Index] = tempEvent1
+    }
+    
+    func eventCheck() {
+        if self.eventsGame.checkEventRoundOrder() {
+            self.correctRounds += 1
+            self.timerOrButton.setImage(self.successButton, for: .normal)
+        } else {
+            self.timerOrButton.setImage(self.failButton, for: .normal)
+        }
+        self.roundsPlayed += 1
+        self.timerOrButton.isEnabled = true
+        self.shakeLabel.text = "Tap events to learn more"
+        // FIXME: Remove before setting final commit
+        for event in self.eventsGame.eventRound {
+            print(event.date)
+        }
+
+    }
 
 }
 
