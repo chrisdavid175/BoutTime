@@ -54,10 +54,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Directions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ub7-mo-ch4">
-                                <rect key="frame" x="32" y="626" width="311" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Directions" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ub7-mo-ch4">
+                                <rect key="frame" x="32" y="595" width="311" height="65"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="DKm-P2-1aF"/>
+                                    <constraint firstAttribute="height" constant="65" id="DKm-P2-1aF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.21176470588235294" green="0.55294117647058827" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -137,11 +137,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yrs-EI-8rW">
-                                <rect key="frame" x="120" y="568" width="135" height="50"/>
+                                <rect key="frame" x="120" y="537" width="135" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Xt1-vg-ghP"/>
                                 </constraints>
                                 <state key="normal" title="TimerOrButton"/>
+                                <connections>
+                                    <action selector="nextRound" destination="BYZ-38-t0r" eventType="touchUpInside" id="abG-xA-vvk"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0078431372549019607" green="0.15686274509803921" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -157,7 +160,7 @@
                             <constraint firstItem="UVe-4M-W7g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="7e5-1h-YKA"/>
                             <constraint firstItem="VDz-K9-Sdc" firstAttribute="leading" secondItem="Jnj-ix-Drx" secondAttribute="trailing" constant="-38" id="7eM-Ju-05j"/>
                             <constraint firstItem="Yrs-EI-8rW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="120" id="7wl-so-aV1"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ub7-mo-ch4" secondAttribute="bottom" constant="20" id="8RF-Mz-gKx"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ub7-mo-ch4" secondAttribute="bottom" constant="7" id="8RF-Mz-gKx"/>
                             <constraint firstItem="G03-n0-DYa" firstAttribute="top" secondItem="VDz-K9-Sdc" secondAttribute="bottom" id="A7H-iN-6Lf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ztS-LJ-FCc" secondAttribute="trailing" constant="20" id="Cjb-TB-K6U"/>
                             <constraint firstItem="ztS-LJ-FCc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="EZ3-9D-SHi"/>
@@ -197,6 +200,12 @@
                         <outlet property="Event2Label" destination="Jnj-ix-Drx" id="8qi-u2-Zzx"/>
                         <outlet property="Event3Label" destination="UVe-4M-W7g" id="rJd-84-6Qv"/>
                         <outlet property="Event4Label" destination="ztS-LJ-FCc" id="Ogu-hm-9Mj"/>
+                        <outlet property="event1DButton" destination="i56-00-11q" id="QxZ-TU-WMf"/>
+                        <outlet property="event2DButton" destination="G03-n0-DYa" id="qRe-dY-QyR"/>
+                        <outlet property="event2UButton" destination="VDz-K9-Sdc" id="bdO-tD-Zjl"/>
+                        <outlet property="event3DButton" destination="Adj-dH-u7J" id="J3N-sD-QWV"/>
+                        <outlet property="event3UButton" destination="5qD-bc-HDq" id="Nxh-qg-ohj"/>
+                        <outlet property="event4UButton" destination="RYL-9b-vKR" id="v78-qU-c5d"/>
                         <outlet property="shakeLabel" destination="Ub7-mo-ch4" id="Qd2-5p-TEl"/>
                         <outlet property="timerOrButton" destination="Yrs-EI-8rW" id="xKn-5l-jfc"/>
                     </connections>
@@ -205,12 +214,57 @@
             </objects>
             <point key="canvasLocation" x="143.19999999999999" y="138.98050974512745"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="PYq-y4-CKk">
+            <objects>
+                <viewController id="50H-Qq-CMI" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TPD-dG-hPf"/>
+                        <viewControllerLayoutGuide type="bottom" id="laT-6A-AbZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="f3o-qN-CR8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRi-E3-l0u">
+                                <rect key="frame" x="145" y="287" width="84" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.21176470589999999" green="0.55294117649999996" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Hz-4u-Oy6">
+                                <rect key="frame" x="137" y="394" width="100" height="35"/>
+                                <state key="normal" title="Play Again" image="play_again"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnX-Vt-ZiI">
+                                <rect key="frame" x="143" y="312" width="89" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0078431372550000003" green="0.15686274510000001" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qnX-Vt-ZiI" firstAttribute="centerX" secondItem="f3o-qN-CR8" secondAttribute="centerX" id="0Qd-lW-xav"/>
+                            <constraint firstItem="qnX-Vt-ZiI" firstAttribute="centerY" secondItem="f3o-qN-CR8" secondAttribute="centerY" id="HPa-xh-WXa"/>
+                            <constraint firstItem="qnX-Vt-ZiI" firstAttribute="top" secondItem="bRi-E3-l0u" secondAttribute="bottom" constant="4" id="QW2-JY-Yf5"/>
+                            <constraint firstItem="qnX-Vt-ZiI" firstAttribute="centerX" secondItem="bRi-E3-l0u" secondAttribute="centerX" id="ba4-tX-NPn"/>
+                            <constraint firstItem="qnX-Vt-ZiI" firstAttribute="centerX" secondItem="4Hz-4u-Oy6" secondAttribute="centerX" id="oBC-yB-hhp"/>
+                            <constraint firstItem="4Hz-4u-Oy6" firstAttribute="top" secondItem="qnX-Vt-ZiI" secondAttribute="bottom" constant="40" id="zLV-DL-OpW"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Lw-lV-kzX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="844" y="138.98050974512745"/>
+        </scene>
     </scenes>
     <resources>
         <image name="down_full" width="158" height="457"/>
         <image name="down_full_selected" width="158" height="457"/>
         <image name="down_half" width="158" height="229"/>
         <image name="down_half_selected" width="158" height="229"/>
+        <image name="play_again" width="450" height="142"/>
         <image name="up_full" width="158" height="457"/>
         <image name="up_full_selected" width="158" height="457"/>
         <image name="up_half" width="158" height="229"/>

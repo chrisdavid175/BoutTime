@@ -39,6 +39,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var event3Label: UILabel!
     @IBOutlet weak var event4Label: UILabel!
     @IBOutlet weak var shakeLabel: UILabel!
+    @IBOutlet weak var event1DButton: UIButton!
+    @IBOutlet weak var event2UButton: UIButton!
+    @IBOutlet weak var event2DButton: UIButton!
+    @IBOutlet weak var event3UButton: UIButton!
+    @IBOutlet weak var event3DButton: UIButton!
+    @IBOutlet weak var event4UButton: UIButton!
     @IBOutlet weak var timerOrButton: UIButton!
     
     //var eventLabels = [ event1Label, event2Label, event3Label, event4Label ]
@@ -91,18 +97,28 @@ class ViewController: UIViewController {
         return true
     }
     
+    @IBAction func nextRound() {
+        loadRound()
+    }
+    
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            self.checkEvent()
+            eventCheck()
         }
     }
     func resetTimer() {
         var roundTime = 60
+        let minutes = String(format: "%01d", roundTime / 60)
+        let seconds = String(format: "%02d", roundTime % 60)
+        timerOrButton.setImage(nil, for: .normal)
+        shakeLabel.text = "Order events in ascending order\ntop to bottom\nShake to complete"
         timerOrButton.isEnabled = false
-
+        timerOrButton.setTitle("\(minutes):\(seconds)", for: .normal)
+        
+        self.timer?.invalidate()
         self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             roundTime -= 1
-            let minutes = String(format: "%02d", roundTime / 60)
+            let minutes = String(format: "%01d", roundTime / 60)
             let seconds = String(format: "%02d", roundTime % 60)
             self.timerOrButton.setTitle("\(minutes):\(seconds)", for: .normal)
             if roundTime == 0 {
@@ -135,6 +151,7 @@ class ViewController: UIViewController {
     }
     
     func loadRound() {
+        toggleEventButtons(status: true)
         eventsGame.resetRound()
         loadEventLabels()
         resetTimer()
@@ -164,11 +181,21 @@ class ViewController: UIViewController {
         self.roundsPlayed += 1
         self.timerOrButton.isEnabled = true
         self.shakeLabel.text = "Tap events to learn more"
+        toggleEventButtons(status: false)
         // FIXME: Remove before setting final commit
         for event in self.eventsGame.eventRound {
             print(event.date)
         }
 
+    }
+    
+    func toggleEventButtons(status: Bool) {
+        event1DButton.isEnabled = status
+        event2UButton.isEnabled = status
+        event2DButton.isEnabled = status
+        event3UButton.isEnabled = status
+        event3DButton.isEnabled = status
+        event4UButton.isEnabled = status
     }
 
 }
