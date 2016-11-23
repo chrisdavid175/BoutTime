@@ -98,6 +98,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func nextRound() {
+        if roundsPlayed = roundsPerGame {
+            presentScore()
+        }
         loadRound()
     }
     
@@ -196,6 +199,14 @@ class ViewController: UIViewController {
         event3UButton.isEnabled = status
         event3DButton.isEnabled = status
         event4UButton.isEnabled = status
+    }
+    
+    func presentScore() {
+        var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        var scoreController: UIViewController = storyboard.instantiateInitialViewController("scoreController")
+        
+        self.present(scoreController, animated: true, completion: nil)
     }
 
 }

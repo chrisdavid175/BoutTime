@@ -217,7 +217,7 @@
         <!--View Controller-->
         <scene sceneID="PYq-y4-CKk">
             <objects>
-                <viewController id="50H-Qq-CMI" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="50H-Qq-CMI" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TPD-dG-hPf"/>
                         <viewControllerLayoutGuide type="bottom" id="laT-6A-AbZ"/>
