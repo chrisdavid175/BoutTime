@@ -46,6 +46,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var event3DButton: UIButton!
     @IBOutlet weak var event4UButton: UIButton!
     @IBOutlet weak var timerOrButton: UIButton!
+    @IBOutlet weak var yourScoreLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var playAgainButton: UIButton!
+    
+    
     
     //var eventLabels = [ event1Label, event2Label, event3Label, event4Label ]
     
@@ -98,10 +103,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func nextRound() {
-        if roundsPlayed = roundsPerGame {
+        if roundsPlayed == roundsPerGame {
             presentScore()
-        }
+        } else {
         loadRound()
+        }
     }
     
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
@@ -130,6 +136,12 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func playAgain() {
+        roundsPlayed = 0
+        toggleVisibilityOfScoreItems(status: true)
+        toggleVisibilityOfRoundItems(status: false)
+        loadRound()
+    }
     // MARK: - Helper Methods
     
     func formatLabels() {
@@ -154,6 +166,7 @@ class ViewController: UIViewController {
     }
     
     func loadRound() {
+        toggleVisibilityOfScoreItems(status: true)
         toggleEventButtons(status: true)
         eventsGame.resetRound()
         loadEventLabels()
@@ -201,12 +214,32 @@ class ViewController: UIViewController {
         event4UButton.isEnabled = status
     }
     
+    func toggleVisibilityOfScoreItems(status: Bool) {
+        yourScoreLabel.isHidden = status
+        scoreLabel.isHidden = status
+        playAgainButton.isHidden = status
+    }
+    
+    func toggleVisibilityOfRoundItems(status: Bool) {
+        event1Label.isHidden = status
+        event2Label.isHidden = status
+        event3Label.isHidden = status
+        event4Label.isHidden = status
+        event1DButton.isHidden = status
+        event2UButton.isHidden = status
+        event2DButton.isHidden = status
+        event3UButton.isHidden = status
+        event3DButton.isHidden = status
+        event4UButton.isHidden = status
+        timerOrButton.isHidden = status
+        shakeLabel.isHidden = status
+
+    }
+    
     func presentScore() {
-        var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        var scoreController: UIViewController = storyboard.instantiateInitialViewController("scoreController")
-        
-        self.present(scoreController, animated: true, completion: nil)
+        toggleVisibilityOfRoundItems(status: true)
+        scoreLabel.text = "\(correctRounds)/\(roundsPerGame)"
+        toggleVisibilityOfScoreItems(status: false)
     }
 
 }
