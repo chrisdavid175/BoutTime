@@ -22,9 +22,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event1" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4r-qG-y3h">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPd-qS-vkH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                <state key="normal" title="Button" image="webview_bar"/>
+                                <connections>
+                                    <action selector="exitWebView" destination="BYZ-38-t0r" eventType="touchUpInside" id="DMT-aK-GsQ"/>
+                                </connections>
+                            </button>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0pe-n5-lb4">
+                                <rect key="frame" x="-4" y="40" width="383" height="627"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event1" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4r-qG-y3h">
                                 <rect key="frame" x="36" y="40" width="303" height="110"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="Wpd-5e-TYg"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="265" id="u6i-wC-Xb8"/>
@@ -32,27 +44,42 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="lSb-OG-T54" appends="YES" id="KUj-NN-nLB"/>
+                                </connections>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jnj-ix-Drx">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jnj-ix-Drx">
                                 <rect key="frame" x="36" y="165" width="303" height="110"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="05p-JN-Dzz" appends="YES" id="VtX-Mz-368"/>
+                                </connections>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVe-4M-W7g">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVe-4M-W7g">
                                 <rect key="frame" x="36" y="290" width="303" height="110"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="wqz-e7-K3o" appends="YES" id="9KZ-II-Exc"/>
+                                </connections>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztS-LJ-FCc">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztS-LJ-FCc">
                                 <rect key="frame" x="36" y="415" width="303" height="110"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="cqo-Mj-4vf" appends="YES" id="3Hx-Es-RJS"/>
+                                </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Directions" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ub7-mo-ch4">
                                 <rect key="frame" x="32" y="595" width="311" height="65"/>
@@ -157,7 +184,6 @@
                                 <state key="normal" title="Play Again" image="play_again"/>
                                 <connections>
                                     <action selector="playAgain" destination="BYZ-38-t0r" eventType="touchUpInside" id="TUV-Us-C3V"/>
-                                    <action selector="playAgain" destination="50H-Qq-CMI" eventType="touchUpInside" id="l4a-a9-yd0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yrs-EI-8rW">
@@ -181,6 +207,7 @@
                             <constraint firstItem="ztS-LJ-FCc" firstAttribute="width" secondItem="g4r-qG-y3h" secondAttribute="width" id="67D-lR-RG8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RYL-9b-vKR" secondAttribute="trailing" constant="20" id="6Jw-4x-QMX"/>
                             <constraint firstItem="Ub7-mo-ch4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="6qn-bd-WcL"/>
+                            <constraint firstItem="yPd-qS-vkH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="7AC-so-m3t"/>
                             <constraint firstItem="UVe-4M-W7g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="7e5-1h-YKA"/>
                             <constraint firstItem="VDz-K9-Sdc" firstAttribute="leading" secondItem="Jnj-ix-Drx" secondAttribute="trailing" constant="-38" id="7eM-Ju-05j"/>
                             <constraint firstItem="Yrs-EI-8rW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="120" id="7wl-so-aV1"/>
@@ -197,11 +224,13 @@
                             <constraint firstItem="g4r-qG-y3h" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="Ru3-NH-RB2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Jnj-ix-Drx" secondAttribute="trailing" constant="20" id="T6J-x5-oeG"/>
                             <constraint firstItem="Ub7-mo-ch4" firstAttribute="top" secondItem="Yrs-EI-8rW" secondAttribute="bottom" constant="8" id="Tlb-gs-qhm"/>
+                            <constraint firstItem="0pe-n5-lb4" firstAttribute="top" secondItem="g4r-qG-y3h" secondAttribute="top" id="Tqv-fa-PAw"/>
                             <constraint firstItem="ztS-LJ-FCc" firstAttribute="height" secondItem="g4r-qG-y3h" secondAttribute="height" id="UOB-Gz-KkV"/>
                             <constraint firstItem="5qD-bc-HDq" firstAttribute="top" secondItem="G03-n0-DYa" secondAttribute="bottom" constant="15" id="VLp-Ai-9Wk"/>
                             <constraint firstItem="qnX-Vt-ZiI" firstAttribute="centerX" secondItem="4Hz-4u-Oy6" secondAttribute="centerX" id="WUZ-CN-X6n"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5qD-bc-HDq" secondAttribute="trailing" constant="20" id="X80-3q-Pct"/>
                             <constraint firstItem="Jnj-ix-Drx" firstAttribute="width" secondItem="g4r-qG-y3h" secondAttribute="width" id="YGc-cz-PcX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0pe-n5-lb4" secondAttribute="trailing" constant="-20" id="b5C-YK-eB3"/>
                             <constraint firstItem="g4r-qG-y3h" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="bYV-Ey-WEx"/>
                             <constraint firstItem="RYL-9b-vKR" firstAttribute="leading" secondItem="ztS-LJ-FCc" secondAttribute="trailing" constant="-38" id="dx9-1V-nuQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UVe-4M-W7g" secondAttribute="trailing" constant="20" id="eir-IR-O1R"/>
@@ -215,6 +244,10 @@
                             <constraint firstItem="Jnj-ix-Drx" firstAttribute="top" secondItem="g4r-qG-y3h" secondAttribute="bottom" constant="15" id="ivn-Dw-vmR"/>
                             <constraint firstItem="VDz-K9-Sdc" firstAttribute="top" secondItem="i56-00-11q" secondAttribute="bottom" constant="15" id="jSa-MH-Tqa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="g4r-qG-y3h" secondAttribute="trailing" constant="20" id="jlH-0p-GHY"/>
+                            <constraint firstItem="0pe-n5-lb4" firstAttribute="top" secondItem="yPd-qS-vkH" secondAttribute="bottom" id="lnl-Um-GJJ"/>
+                            <constraint firstItem="0pe-n5-lb4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="mOF-6P-Bav"/>
+                            <constraint firstItem="yPd-qS-vkH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pSc-YZ-ijE"/>
+                            <constraint firstItem="0pe-n5-lb4" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="pzg-c5-ku2"/>
                             <constraint firstItem="i56-00-11q" firstAttribute="leading" secondItem="VDz-K9-Sdc" secondAttribute="leading" id="sBH-7H-ng1"/>
                             <constraint firstItem="ztS-LJ-FCc" firstAttribute="top" secondItem="UVe-4M-W7g" secondAttribute="bottom" constant="15" id="uoV-85-XgD"/>
                             <constraint firstItem="Jnj-ix-Drx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="wj1-Xb-GI4"/>
@@ -222,6 +255,7 @@
                             <constraint firstAttribute="trailing" secondItem="Yrs-EI-8rW" secondAttribute="trailing" constant="120" id="yGS-5K-HlO"/>
                             <constraint firstItem="Adj-dH-u7J" firstAttribute="top" secondItem="5qD-bc-HDq" secondAttribute="bottom" id="z74-Y4-NJ5"/>
                             <constraint firstItem="i56-00-11q" firstAttribute="trailing" secondItem="g4r-qG-y3h" secondAttribute="trailing" id="zcM-K6-4dd"/>
+                            <constraint firstAttribute="trailing" secondItem="yPd-qS-vkH" secondAttribute="trailing" id="zlX-WX-UpB"/>
                             <constraint firstItem="qnX-Vt-ZiI" firstAttribute="centerX" secondItem="bRi-E3-l0u" secondAttribute="centerX" id="zzL-Z8-Wvb"/>
                         </constraints>
                     </view>
@@ -239,34 +273,39 @@
                         <outlet property="playAgainButton" destination="4Hz-4u-Oy6" id="3Qc-Xu-drm"/>
                         <outlet property="scoreLabel" destination="qnX-Vt-ZiI" id="lNT-FW-qWQ"/>
                         <outlet property="shakeLabel" destination="Ub7-mo-ch4" id="Qd2-5p-TEl"/>
+                        <outlet property="tapGestureEvent1" destination="lSb-OG-T54" id="qjx-Ci-5wL"/>
+                        <outlet property="tapGestureEvent2" destination="05p-JN-Dzz" id="PXy-a9-e18"/>
+                        <outlet property="tapGestureEvent3" destination="wqz-e7-K3o" id="DNf-kb-LCQ"/>
+                        <outlet property="tapGestureEvent4" destination="cqo-Mj-4vf" id="KF3-Fu-cn2"/>
                         <outlet property="timerOrButton" destination="Yrs-EI-8rW" id="xKn-5l-jfc"/>
+                        <outlet property="webView" destination="0pe-n5-lb4" id="0NB-WZ-YaS"/>
+                        <outlet property="webViewExitButton" destination="yPd-qS-vkH" id="v8U-cO-Mnq"/>
                         <outlet property="yourScoreLabel" destination="bRi-E3-l0u" id="jsN-KH-Ikb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="lSb-OG-T54">
+                    <connections>
+                        <action selector="event1Tap:" destination="BYZ-38-t0r" id="265-4g-k31"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="05p-JN-Dzz">
+                    <connections>
+                        <action selector="event2Tap:" destination="BYZ-38-t0r" id="wxC-Oz-PtU"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="wqz-e7-K3o">
+                    <connections>
+                        <action selector="event3Tap:" destination="BYZ-38-t0r" id="gSP-hp-G7h"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="cqo-Mj-4vf">
+                    <connections>
+                        <action selector="event4Tap:" destination="BYZ-38-t0r" id="Ros-bk-bWl"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="143.19999999999999" y="138.98050974512745"/>
-        </scene>
-        <!--Score Controller-->
-        <scene sceneID="PYq-y4-CKk">
-            <objects>
-                <viewController storyboardIdentifier="scoreController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="50H-Qq-CMI" customClass="ScoreController" customModule="BoutTime" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TPD-dG-hPf"/>
-                        <viewControllerLayoutGuide type="bottom" id="laT-6A-AbZ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="f3o-qN-CR8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0078431372550000003" green="0.15686274510000001" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <connections>
-                        <outlet property="scoreLabel" destination="qnX-Vt-ZiI" id="c6E-KN-0U4"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Lw-lV-kzX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="844" y="138.98050974512745"/>
         </scene>
     </scenes>
     <resources>
@@ -279,5 +318,6 @@
         <image name="up_full_selected" width="158" height="457"/>
         <image name="up_half" width="158" height="229"/>
         <image name="up_half_selected" width="158" height="229"/>
+        <image name="webview_bar" width="1333" height="167"/>
     </resources>
 </document>

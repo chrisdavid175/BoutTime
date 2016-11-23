@@ -114,10 +114,10 @@
 		<key>date</key>
 		<date>1970-03-01T00:00:00Z</date>
 	</dict>
-	<key>"Supreme Court - Pike v. Bruce Church</key>
+	<key>&quot;Supreme Court - Pike v. Bruce Church</key>
 	<dict>
 		<key>url</key>
-		<string> Inc."</string>
+		<string> Inc.&quot;</string>
 		<key>date</key>
 		<date>1970-03-02T00:00:00Z</date>
 	</dict>
@@ -222,7 +222,7 @@
 	<key>1970 tornado outbreak sequence</key>
 	<dict>
 		<key>url</key>
-		<string>"https://en.wikipedia.org/wiki/April_17%E2%80%9319</string>
+		<string>https://en.wikipedia.org/wiki/April_17%E2%80%9319</string>
 		<key>date</key>
 		<date>1970-04-17T00:00:00Z</date>
 	</dict>

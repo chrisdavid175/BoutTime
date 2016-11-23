@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     let roundsPerGame = 6
     var roundsPlayed = 0
     var correctRounds = 0
+    var roundInPlay = true
     // FIXME: Remove image var
     //let successButton = UIImage(named: Bundle.main.path(forResource: "next_round_success", ofType: "png"))
     let successButton = UIImage(named: "next_round_success.png")
@@ -49,8 +50,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var yourScoreLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var playAgainButton: UIButton!
-    
-    
+    @IBOutlet weak var webViewExitButton: UIButton!
+    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet var tapGestureEvent1: UITapGestureRecognizer!
+    @IBOutlet var tapGestureEvent2: UITapGestureRecognizer!
+    @IBOutlet var tapGestureEvent3: UITapGestureRecognizer!
+    @IBOutlet var tapGestureEvent4: UITapGestureRecognizer!
     
     //var eventLabels = [ event1Label, event2Label, event3Label, event4Label ]
     
@@ -60,6 +65,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         formatLabels()
         loadRound()
+        
+
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -142,6 +149,26 @@ class ViewController: UIViewController {
         toggleVisibilityOfRoundItems(status: false)
         loadRound()
     }
+    
+    @IBAction func exitWebView() {
+        toggleVisibilityOfWebViewItems(status: true)
+        toggleVisibilityOfScoreItems(status: true)
+        toggleVisibilityOfRoundItems(status: false)
+    }
+    
+    @IBAction func event1Tap(_ sender: UITapGestureRecognizer) {
+        launchURL(index: 0)
+    }
+    @IBAction func event2Tap(_ sender: UITapGestureRecognizer) {
+        launchURL(index: 1)
+    }
+    @IBAction func event3Tap(_ sender: UITapGestureRecognizer) {
+        launchURL(index: 2)
+    }
+    @IBAction func event4Tap(_ sender: UITapGestureRecognizer) {
+        launchURL(index: 3)
+    }
+    
     // MARK: - Helper Methods
     
     func formatLabels() {
@@ -167,10 +194,13 @@ class ViewController: UIViewController {
     
     func loadRound() {
         toggleVisibilityOfScoreItems(status: true)
+        toggleVisibilityOfWebViewItems(status: true)
+        toggleEventLabelTap(status: false)
         toggleEventButtons(status: true)
         eventsGame.resetRound()
         loadEventLabels()
         resetTimer()
+        roundInPlay = true
     }
     
     func loadEventLabels() {
@@ -197,6 +227,11 @@ class ViewController: UIViewController {
         self.roundsPlayed += 1
         self.timerOrButton.isEnabled = true
         self.shakeLabel.text = "Tap events to learn more"
+        roundInPlay = false
+        
+        toggleEventButtons(status: true)
+        toggleEventLabelTap(status: true)
+        
         toggleEventButtons(status: false)
         // FIXME: Remove before setting final commit
         for event in self.eventsGame.eventRound {
@@ -236,10 +271,36 @@ class ViewController: UIViewController {
 
     }
     
+    func toggleVisibilityOfWebViewItems(status: Bool) {
+        webViewExitButton.isHidden = status
+        webView.isHidden = status
+    }
+    
+    func toggleEventLabelTap(status: Bool) {
+        tapGestureEvent1.isEnabled = status
+        tapGestureEvent2.isEnabled = status
+        tapGestureEvent3.isEnabled = status
+        tapGestureEvent4.isEnabled = status
+    }
+    
     func presentScore() {
         toggleVisibilityOfRoundItems(status: true)
         scoreLabel.text = "\(correctRounds)/\(roundsPerGame)"
         toggleVisibilityOfScoreItems(status: false)
+    }
+    
+
+    func launchURL(index: Int) {
+        toggleVisibilityOfScoreItems(status: true)
+        toggleVisibilityOfRoundItems(status: true)
+        toggleVisibilityOfWebViewItems(status: false)
+        if let url = NSURL(string: eventsGame.eventRound[index].url) {
+            //UIApplication.shared.openURL(url as URL)
+            //UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+            let request = NSURLRequest(url: url as URL)
+            webView.loadRequest(request as URLRequest)
+            
+        }
     }
 
 }
