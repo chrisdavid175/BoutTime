@@ -51,7 +51,6 @@ class ViewController: UIViewController {
     @IBOutlet var tapGestureEvent3: UITapGestureRecognizer!
     @IBOutlet var tapGestureEvent4: UITapGestureRecognizer!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         formatLabels()
