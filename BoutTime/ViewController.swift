@@ -13,9 +13,6 @@ class ViewController: UIViewController {
     let roundsPerGame = 6
     var roundsPlayed = 0
     var correctRounds = 0
-    var roundInPlay = true
-    // FIXME: Remove image var
-    //let successButton = UIImage(named: Bundle.main.path(forResource: "next_round_success", ofType: "png"))
     let successButton = UIImage(named: "next_round_success.png")
     let failButton = UIImage(named: "next_round_fail.png")
     var timer: Timer?
@@ -26,14 +23,11 @@ class ViewController: UIViewController {
             let eventDictionary = try PlistConverter.dictionaryFromFile(resource: "EventList", ofType: "plist")
             let eventList = try EventUnarchiver.eventListFromDictionary(dictionary: eventDictionary)
             self.eventsGame = EventQuiz(eventList: eventList)
-            
         } catch let error {
             fatalError("\(error)")
         }
         super.init(coder: aDecoder)
     }
-
-
 
     @IBOutlet weak var event1Label: UILabel!
     @IBOutlet weak var event2Label: UILabel!
@@ -57,71 +51,63 @@ class ViewController: UIViewController {
     @IBOutlet var tapGestureEvent3: UITapGestureRecognizer!
     @IBOutlet var tapGestureEvent4: UITapGestureRecognizer!
     
-    //var eventLabels = [ event1Label, event2Label, event3Label, event4Label ]
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         formatLabels()
         loadRound()
-        
-
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
+    // Reorder events based on which buttons are clicked
     @IBAction func event1DownButton() {
         swapEvents(event1Index: 0, event2Index: 1)
         loadEventLabels()
     }
-
     @IBAction func event2UpButton() {
         swapEvents(event1Index: 1, event2Index: 0)
         loadEventLabels()
     }
-    
     @IBAction func event2DownButton() {
         swapEvents(event1Index: 1, event2Index: 2)
         loadEventLabels()
     }
-    
     @IBAction func event3UpButton() {
         swapEvents(event1Index: 2, event2Index: 1)
         loadEventLabels()
     }
-    
     @IBAction func event3DownButton() {
         swapEvents(event1Index: 2, event2Index: 3)
         loadEventLabels()
     }
-    
     @IBAction func event4UpButton() {
         swapEvents(event1Index: 3, event2Index: 2)
         loadEventLabels()
     }
  
+    // Overrides functions to detect the shake gesture, and then checks the order of the events
     override func becomeFirstResponder() -> Bool {
         return true
     }
-    
-    @IBAction func nextRound() {
-        if roundsPlayed == roundsPerGame {
-            presentScore()
-        } else {
-        loadRound()
-        }
-    }
-    
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             eventCheck()
         }
     }
+    
+    // Presents score if 6 rounds have been played. Otherwise, it loads the next round
+    @IBAction func nextRound() {
+        if roundsPlayed == roundsPerGame {
+            presentScore()
+        } else {
+            loadRound()
+        }
+    }
+    
+    // Sets a 60 sec timer display, and checks the event order if time runs out
     func resetTimer() {
         var roundTime = 60
         let minutes = String(format: "%01d", roundTime / 60)
@@ -143,6 +129,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // Starts a new game and resets the rounds
     @IBAction func playAgain() {
         roundsPlayed = 0
         toggleVisibilityOfScoreItems(status: true)
@@ -150,12 +137,14 @@ class ViewController: UIViewController {
         loadRound()
     }
     
+    // Exits the webview
     @IBAction func exitWebView() {
         toggleVisibilityOfWebViewItems(status: true)
         toggleVisibilityOfScoreItems(status: true)
         toggleVisibilityOfRoundItems(status: false)
     }
     
+    // Launches a web view based on which event label is tapped
     @IBAction func event1Tap(_ sender: UITapGestureRecognizer) {
         launchURL(index: 0)
     }
@@ -169,16 +158,31 @@ class ViewController: UIViewController {
         launchURL(index: 3)
     }
     
+    // Hide everything and present the score and play again button
+    func presentScore() {
+        toggleVisibilityOfRoundItems(status: true)
+        scoreLabel.text = "\(correctRounds)/\(roundsPerGame)"
+        toggleVisibilityOfScoreItems(status: false)
+    }
+    
+    // Function to launch more info on an event in Web view
+    func launchURL(index: Int) {
+        toggleVisibilityOfScoreItems(status: true)
+        toggleVisibilityOfRoundItems(status: true)
+        toggleVisibilityOfWebViewItems(status: false)
+        if let url = NSURL(string: eventsGame.eventRound[index].url) {
+            //UIApplication.shared.openURL(url as URL)
+            //UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+            let request = NSURLRequest(url: url as URL)
+            webView.loadRequest(request as URLRequest)
+            
+        }
+    }
+
     // MARK: - Helper Methods
     
+    // Used a function to handheld the formatting of labels
     func formatLabels() {
-        /*
-         for label in eventLabels {
-         label.layer.cornerRadius = 5
-         label.clipsToBounds = true
-         }
-         */
-        
         let eventLabelCornerRadius = 5
         let clipsToBounds = true
         event1Label.layer.cornerRadius = CGFloat(eventLabelCornerRadius)
@@ -189,9 +193,9 @@ class ViewController: UIViewController {
         event2Label.clipsToBounds = clipsToBounds
         event3Label.clipsToBounds = clipsToBounds
         event4Label.clipsToBounds = clipsToBounds
-        
     }
     
+    // Prepares and loads the round
     func loadRound() {
         toggleVisibilityOfScoreItems(status: true)
         toggleVisibilityOfWebViewItems(status: true)
@@ -200,9 +204,9 @@ class ViewController: UIViewController {
         eventsGame.resetRound()
         loadEventLabels()
         resetTimer()
-        roundInPlay = true
     }
     
+    // Populates each label with the event from the eventRound
     func loadEventLabels() {
         event1Label.text = eventsGame.eventRound[0].name
         event2Label.text = eventsGame.eventRound[1].name
@@ -210,6 +214,7 @@ class ViewController: UIViewController {
         event4Label.text = eventsGame.eventRound[3].name
     }
     
+    // Function to swap event positions
     func swapEvents(event1Index: Int, event2Index: Int) {
         let tempEvent1 = eventsGame.eventRound[event1Index]
         let tempEvent2 = eventsGame.eventRound[event2Index]
@@ -217,6 +222,11 @@ class ViewController: UIViewController {
         eventsGame.eventRound[event2Index] = tempEvent1
     }
     
+    // Check if order of events is in ascendign order based on positions
+    // Increment the number of rounds played
+    // Display appropriate button image based on correctnesss
+    // Disable event buttons from trying to reorder and recheck
+    // Enable tap on labels
     func eventCheck() {
         if self.eventsGame.checkEventRoundOrder() {
             self.correctRounds += 1
@@ -227,19 +237,13 @@ class ViewController: UIViewController {
         self.roundsPlayed += 1
         self.timerOrButton.isEnabled = true
         self.shakeLabel.text = "Tap events to learn more"
-        roundInPlay = false
         
-        toggleEventButtons(status: true)
         toggleEventLabelTap(status: true)
-        
         toggleEventButtons(status: false)
-        // FIXME: Remove before setting final commit
-        for event in self.eventsGame.eventRound {
-            print(event.date)
-        }
 
     }
     
+    // Functions to help toggle various items enabled/disabled or hidden/shown
     func toggleEventButtons(status: Bool) {
         event1DButton.isEnabled = status
         event2UButton.isEnabled = status
@@ -248,13 +252,11 @@ class ViewController: UIViewController {
         event3DButton.isEnabled = status
         event4UButton.isEnabled = status
     }
-    
     func toggleVisibilityOfScoreItems(status: Bool) {
         yourScoreLabel.isHidden = status
         scoreLabel.isHidden = status
         playAgainButton.isHidden = status
     }
-    
     func toggleVisibilityOfRoundItems(status: Bool) {
         event1Label.isHidden = status
         event2Label.isHidden = status
@@ -268,14 +270,11 @@ class ViewController: UIViewController {
         event4UButton.isHidden = status
         timerOrButton.isHidden = status
         shakeLabel.isHidden = status
-
     }
-    
     func toggleVisibilityOfWebViewItems(status: Bool) {
         webViewExitButton.isHidden = status
         webView.isHidden = status
     }
-    
     func toggleEventLabelTap(status: Bool) {
         tapGestureEvent1.isEnabled = status
         tapGestureEvent2.isEnabled = status
@@ -283,25 +282,6 @@ class ViewController: UIViewController {
         tapGestureEvent4.isEnabled = status
     }
     
-    func presentScore() {
-        toggleVisibilityOfRoundItems(status: true)
-        scoreLabel.text = "\(correctRounds)/\(roundsPerGame)"
-        toggleVisibilityOfScoreItems(status: false)
-    }
-    
-
-    func launchURL(index: Int) {
-        toggleVisibilityOfScoreItems(status: true)
-        toggleVisibilityOfRoundItems(status: true)
-        toggleVisibilityOfWebViewItems(status: false)
-        if let url = NSURL(string: eventsGame.eventRound[index].url) {
-            //UIApplication.shared.openURL(url as URL)
-            //UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
-            let request = NSURLRequest(url: url as URL)
-            webView.loadRequest(request as URLRequest)
-            
-        }
-    }
 
 }
 
